@@ -2,6 +2,9 @@
 #define CLASSES_H
 
 #include<iostream>
+#include<cstdio>
+#include<cstdlib>
+#include<ctime>
 #define WALL 2
 #define BLOCK 1
 #define AIR 0
@@ -9,11 +12,16 @@
 #define HEIGHT 20
 #define WIDTH 15
 
+#define BLOCK_COUNT 1
 class Frame{
-	int FrameTab[WIDTH][HEIGHT];
-	int Box[WIDTH][HEIGHT];
+	short FrameTab[WIDTH][HEIGHT];
+	short Box[WIDTH][HEIGHT];
+	short Block[4][4];
+	short PrevBlock;
+	short CurrentBlock;
 	public:
 	void InitBox();
+	void SelectBlock();
 	void debug_OutBox();
 	void FrameMakeSum();
 };
@@ -36,6 +44,14 @@ void Frame::InitBox(){
 	}
 }
 
+void Frame::SelectBlock(){
+	srand(time(NULL));
+	CurrentBlock=rand%BLOCK_COUNT;
+	switch(CurrentBlock){
+		
+	}
+}
+
 void Frame::debug_OutBox(){
 	for(int i=0;i<HEIGHT;i++){
 		for(int j=0;j<WIDTH;j++){
@@ -44,5 +60,6 @@ void Frame::debug_OutBox(){
 		std::cout<< "\n";
 	}
 }
+
 
 #endif
